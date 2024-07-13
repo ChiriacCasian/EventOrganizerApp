@@ -1,0 +1,21 @@
+.check-box {
+    -fx-text-fill: black;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #404040;
+}
+
+.check-box .box {
+    -fx-background-color: #ececec;
+    -fx-border-color: gray;
+    -fx-border-radius: 3px;
+}
+
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}

@@ -1,0 +1,421 @@
+---
+openapi: "3.0.1"
+info:
+  title: "API for Main"
+  version: "unknown"
+paths:
+  /api/admin:
+    post:
+      operationId: "add0"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: "#/components/schemas/AdminUser"
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200_0"
+  /api/admin/:
+    post:
+      operationId: "add1"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: "#/components/schemas/AdminUser"
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200_0"
+  /api/admin/{password}:
+    get:
+      operationId: "getByPassword"
+      parameters:
+      - name: "password"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          $ref: "#/components/responses/200_0"
+  /api/events:
+    get:
+      operationId: "getAll0"
+      responses:
+        "200":
+          $ref: "#/components/responses/200_1"
+    post:
+      operationId: "add2"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: "#/components/schemas/Event_1"
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200_2"
+  /api/events/:
+    get:
+      operationId: "getAll1"
+      responses:
+        "200":
+          $ref: "#/components/responses/200_1"
+    post:
+      operationId: "add3"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: "#/components/schemas/Event_1"
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200_2"
+  /api/events/updates:
+    get:
+      operationId: "getUpdates"
+      responses:
+        "200":
+          description: "Default response"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DeferredResult"
+  /api/events/{invite-code}:
+    parameters:
+    - name: "invite-code"
+      in: "path"
+      required: true
+      schema:
+        type: "string"
+    get:
+      operationId: "getById"
+      responses:
+        "200":
+          $ref: "#/components/responses/200_2"
+    put:
+      operationId: "update"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: "#/components/schemas/Event_1"
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/200_2"
+    delete:
+      operationId: "delete"
+      responses:
+        "200":
+          $ref: "#/components/responses/200_2"
+  /api/mail:
+    post:
+      operationId: "sendMail"
+      parameters:
+      - name: "mail"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "sub"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "bod"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "from"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "password"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "Default response"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+components:
+  responses:
+    "200_0":
+      description: "Default response"
+      content:
+        '*/*':
+          schema:
+            $ref: "#/components/schemas/AdminUser"
+    "200_1":
+      description: "Default response"
+      content:
+        '*/*':
+          schema:
+            $ref: "#/components/schemas/array_Event"
+    "200_2":
+      description: "Default response"
+      content:
+        '*/*':
+          schema:
+            $ref: "#/components/schemas/Event_0"
+  schemas:
+    AdminUser:
+      type: "object"
+      properties:
+        password:
+          type: "string"
+    integer_int32:
+      type: "integer"
+      format: "int32"
+    Month:
+      type: "string"
+      enum:
+      - "JANUARY"
+      - "FEBRUARY"
+      - "MARCH"
+      - "APRIL"
+      - "MAY"
+      - "JUNE"
+      - "JULY"
+      - "AUGUST"
+      - "SEPTEMBER"
+      - "OCTOBER"
+      - "NOVEMBER"
+      - "DECEMBER"
+    DayOfWeek:
+      type: "string"
+      enum:
+      - "MONDAY"
+      - "TUESDAY"
+      - "WEDNESDAY"
+      - "THURSDAY"
+      - "FRIDAY"
+      - "SATURDAY"
+      - "SUNDAY"
+    Chronology:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        calendarType:
+          type: "string"
+        isoBased:
+          type: "boolean"
+    IsoChronology:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        calendarType:
+          type: "string"
+        isoBased:
+          type: "boolean"
+    LocalDateTime:
+      type: "object"
+      properties:
+        nano:
+          $ref: "#/components/schemas/integer_int32"
+        year:
+          $ref: "#/components/schemas/integer_int32"
+        monthValue:
+          $ref: "#/components/schemas/integer_int32"
+        dayOfMonth:
+          $ref: "#/components/schemas/integer_int32"
+        hour:
+          $ref: "#/components/schemas/integer_int32"
+        minute:
+          $ref: "#/components/schemas/integer_int32"
+        second:
+          $ref: "#/components/schemas/integer_int32"
+        month:
+          $ref: "#/components/schemas/Month"
+        dayOfWeek:
+          $ref: "#/components/schemas/DayOfWeek"
+        dayOfYear:
+          $ref: "#/components/schemas/integer_int32"
+        chronology:
+          $ref: "#/components/schemas/Chronology"
+    integer_int64:
+      type: "integer"
+      format: "int64"
+    number_double:
+      type: "number"
+      format: "double"
+    IsoEra:
+      type: "string"
+      enum:
+      - "BCE"
+      - "CE"
+    LocalDate_0:
+      type: "object"
+      properties:
+        year:
+          $ref: "#/components/schemas/integer_int32"
+        month:
+          $ref: "#/components/schemas/Month"
+        monthValue:
+          $ref: "#/components/schemas/integer_int32"
+        dayOfMonth:
+          $ref: "#/components/schemas/integer_int32"
+        leapYear:
+          type: "boolean"
+        dayOfWeek:
+          $ref: "#/components/schemas/DayOfWeek"
+        dayOfYear:
+          $ref: "#/components/schemas/integer_int32"
+        era:
+          $ref: "#/components/schemas/IsoEra"
+        chronology:
+          $ref: "#/components/schemas/IsoChronology"
+    LocalDate_1:
+      type: "object"
+      properties:
+        year:
+          $ref: "#/components/schemas/integer_int32"
+        month:
+          $ref: "#/components/schemas/integer_int32"
+    MapOfString:
+      type: "object"
+      additionalProperties:
+        type: "string"
+    Expense:
+      type: "object"
+      properties:
+        id:
+          $ref: "#/components/schemas/integer_int64"
+        uuid:
+          type: "string"
+        title:
+          type: "string"
+        amount:
+          $ref: "#/components/schemas/number_double"
+        currency:
+          type: "string"
+        date:
+          $ref: "#/components/schemas/LocalDate_0"
+        splitEqually:
+          type: "boolean"
+        expenseTypes:
+          $ref: "#/components/schemas/MapOfString"
+    array_Expense:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/Expense"
+    Transaction:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        amount:
+          $ref: "#/components/schemas/number_double"
+        currency:
+          type: "string"
+        dateOfTransaction:
+          $ref: "#/components/schemas/LocalDate_0"
+    array_Transaction:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/Transaction"
+    Participant:
+      type: "object"
+      properties:
+        id:
+          $ref: "#/components/schemas/integer_int64"
+        name:
+          type: "string"
+        email:
+          type: "string"
+        iban:
+          type: "string"
+        bic:
+          type: "string"
+        expensesPaid:
+          $ref: "#/components/schemas/array_Expense"
+        expensesInvolved:
+          $ref: "#/components/schemas/array_Expense"
+        transactionsFrom:
+          $ref: "#/components/schemas/array_Transaction"
+        transactionsTo:
+          $ref: "#/components/schemas/array_Transaction"
+    array_Participant:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/Participant"
+    Debt:
+      type: "object"
+      properties:
+        payer:
+          $ref: "#/components/schemas/Participant"
+        payee:
+          $ref: "#/components/schemas/Participant"
+        total:
+          $ref: "#/components/schemas/number_double"
+        currency:
+          type: "string"
+    array_Debt:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/Debt"
+    Event_0:
+      type: "object"
+      properties:
+        title:
+          type: "string"
+        description:
+          type: "string"
+        inviteCode:
+          type: "string"
+        currency:
+          type: "string"
+        dateOfCreation:
+          $ref: "#/components/schemas/LocalDateTime"
+        dateOfModification:
+          $ref: "#/components/schemas/LocalDateTime"
+        participants:
+          $ref: "#/components/schemas/array_Participant"
+        expenses:
+          $ref: "#/components/schemas/array_Expense"
+        debts:
+          $ref: "#/components/schemas/array_Debt"
+    Event_1:
+      type: "object"
+      properties:
+        title:
+          type: "string"
+        description:
+          type: "string"
+        inviteCode:
+          type: "string"
+        currency:
+          type: "string"
+        dateOfCreation:
+          type: "object"
+        dateOfModification:
+          type: "object"
+        participants:
+          $ref: "#/components/schemas/array_Participant"
+        expenses:
+          $ref: "#/components/schemas/array_Expense"
+        debts:
+          $ref: "#/components/schemas/array_Debt"
+    array_Event:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/Event_0"
+    DeferredResult:
+      type: "object"
+      properties:
+        result:
+          type: "object"
+        setOrExpired:
+          type: "boolean"
