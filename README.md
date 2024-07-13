@@ -1,7 +1,6 @@
-# Splitty
+# EventOrganizerApp
 
-This repository contains the application Splitty, 
-developed by Group 18 for the OOPP project.
+This application is meant to help the user create an event, invite friends and add particularities to the event. It serves as an example for implementing SpringBoot backend with WebSocket and LongPolling with a JavaFx frontend.
 
 ## Running the Project
 
